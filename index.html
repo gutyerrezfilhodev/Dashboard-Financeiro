@@ -37,6 +37,1036 @@
   .mono { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
   .display { font-family: 'Space Grotesk', sans-serif; }
 
+  .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; }
+  .brand-mark { width: 36px; height: 36px; border-radius: 9px; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
+  .brand-title { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.25; }
+  .brand-sub { font-size: 12px; color: var(--muted); }
+
+  /* Tabs */
+  .tabs-nav { display: flex; gap: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 4px; margin-bottom: 22px; width: fit-content; }
+  .tab-btn {
+    border: none; background: transparent; color: var(--muted); font-family: 'Inter', sans-serif; font-size: 13px;
+    font-weight: 600; padding: 9px 18px; border-radius: 9px; cursor: pointer; transition: background 0.12s ease, color 0.12s ease;
+  }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { background: var(--primary); color: #fff; }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  .subtabs-nav { display: flex; gap: 24px; border-bottom: 1px solid var(--line); margin-bottom: 20px; }
+  .subtab-btn {
+    border: none; background: transparent; font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600;
+    color: var(--muted); padding: 10px 2px; cursor: pointer; position: relative; transition: color 0.12s ease;
+  }
+  .subtab-btn::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: transparent; border-radius: 2px; }
+  .subtab-btn:hover { color: var(--ink); }
+  .subtab-btn.active { color: var(--ink); }
+  .subtab-btn.active::after { background: var(--primary); }
+
+  .panel-head-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; flex-wrap: wrap; gap: 12px; }
+  .panel-title { font-size: 20px; font-weight: 700; letter-spacing: -0.01em; }
+  .panel-desc { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+
+  .topbar-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .search-box { display: flex; align-items: center; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 9px 12px; min-width: 240px; }
+  .search-box input { border: none; outline: none; font-size: 13px; width: 100%; font-family: 'Inter', sans-serif; color: var(--ink); background: transparent; }
+  .search-box svg { color: var(--muted); flex-shrink: 0; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 7px; border: none; background: var(--primary); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 10px;
+    cursor: pointer; white-space: nowrap; transition: background 0.12s ease;
+  }
+  .btn-primary:hover { background: #16273F; }
+  .btn-primary:disabled { background: var(--ghost); cursor: not-allowed; }
+
+  .summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 22px; }
+  .summary.modo-fornecedor { grid-template-columns: 1fr; }
+  .summary.modo-fornecedor .col-operador { display: none; }
+  .summary-cell { background: var(--surface); padding: 18px 22px; }
+  .summary-label { font-size: 11.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+  .summary-value { font-size: 28px; font-weight: 700; letter-spacing: -0.02em; }
+
+  .table-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+  .table-head-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--line); }
+  .table-head-row h2 { font-size: 15px; margin: 0; font-weight: 700; }
+  .table-head-row .count { font-size: 12px; color: var(--muted); }
+
+  table { width: 100%; border-collapse: collapse; }
+  thead th { text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; padding: 12px 20px; border-bottom: 1px solid var(--line); background: #FAFBFC; white-space: nowrap; }
+  thead th.num { text-align: right; }
+  thead th.center { text-align: center; }
+  tbody tr { border-bottom: 1px solid var(--line); transition: background 0.12s ease; }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:hover { background: #FAFBFD; }
+  td { padding: 13px 20px; font-size: 13px; vertical-align: middle; }
+  td.num { text-align: right; }
+
+  #tabela.modo-operador thead th.col-fornecedor,
+  #tabela.modo-operador tbody td.col-fornecedor,
+  #tabela.modo-fornecedor thead th.col-operador,
+  #tabela.modo-fornecedor tbody td.col-operador { display: none; }
+
+  .conta-cell { display: flex; align-items: center; gap: 10px; }
+  .avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--primary-soft); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; font-family: 'Space Grotesk', sans-serif; flex-shrink: 0; }
+  .pix-tipo { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; display: block; margin-bottom: 1px; }
+
+  .status-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 600; padding: 4px 9px; border-radius: 20px; }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; }
+  .status-ativa { background: var(--positive-soft); color: var(--positive); }
+  .status-ativa .status-dot { background: var(--positive); }
+  .status-atencao { background: var(--amber-soft); color: var(--amber); }
+  .status-atencao .status-dot { background: var(--amber); }
+  .status-bloqueada { background: var(--red-soft); color: var(--red); }
+  .status-bloqueada .status-dot { background: var(--red); }
+
+  .acao-wrap { position: relative; display: flex; justify-content: center; }
+  .acao-btn {
+    border: none; background: var(--green); color: #fff; font-family: 'Inter', sans-serif;
+    font-size: 12px; font-weight: 600; padding: 7px 16px; border-radius: 999px; cursor: pointer;
+    transition: background 0.12s ease, transform 0.06s ease;
+  }
+  .acao-btn:hover { background: var(--green-dark); }
+  .acao-btn:active { transform: scale(0.97); }
+
+  .acao-menu {
+    position: absolute; right: 0; top: 34px; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 10px; box-shadow: 0 8px 24px rgba(16,24,44,0.12); width: 190px; z-index: 10; padding: 6px;
+    display: none; text-align: left;
+  }
+  .acao-menu.open { display: block; }
+  .acao-menu-title { font-size: 10.5px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; padding: 6px 8px 8px; }
+  .acao-item {
+    width: 100%; display: flex; align-items: center; gap: 8px; background: transparent; border: none;
+    padding: 8px; border-radius: 7px; font-size: 12.5px; color: var(--ink); cursor: pointer;
+    text-align: left; font-family: 'Inter', sans-serif;
+  }
+  .acao-item:hover { background: var(--primary-soft); }
+  .acao-item.disabled { color: var(--muted); cursor: not-allowed; }
+  .acao-item.disabled:hover { background: transparent; }
+  .acao-item.danger:hover { background: var(--red-soft); color: var(--red); }
+  .soon { margin-left: auto; font-size: 9.5px; background: var(--primary-soft); color: var(--primary); padding: 2px 6px; border-radius: 10px; }
+
+  .empty-state { padding: 56px 20px; text-align: center; color: var(--muted); font-size: 13px; }
+  .empty-state .empty-title { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+
+  /* modal */
+  .overlay {
+    position: fixed; inset: 0; background: rgba(16,24,44,0.45); display: none;
+    align-items: center; justify-content: center; padding: 20px; z-index: 100;
+  }
+  .overlay.open { display: flex; }
+  .modal {
+    background: var(--surface); border-radius: 16px; width: 100%; max-width: 460px;
+    max-height: 90vh; overflow-y: auto; padding: 24px; box-shadow: 0 20px 50px rgba(16,24,44,0.25);
+  }
+  .modal.modal-sm { max-width: 380px; }
+  .modal-head { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 18px; }
+  .modal-title { font-size: 17px; font-weight: 700; }
+  .modal-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .modal-close { border: none; background: var(--bg); width: 30px; height: 30px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--muted); flex-shrink: 0; }
+  .modal-close:hover { background: var(--line); }
+
+  .field { margin-bottom: 14px; }
+  .field label { display: block; font-size: 11.5px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .field input, .field select {
+    width: 100%; border: 1px solid var(--line); border-radius: 9px; padding: 10px 12px; font-size: 13px;
+    font-family: 'Inter', sans-serif; color: var(--ink); background: var(--surface); outline: none;
+  }
+  .field input:focus, .field select:focus { border-color: var(--primary); }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+  .modal-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 20px; }
+  .btn-ghost {
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 10px; cursor: pointer;
+  }
+  .btn-ghost:hover { background: var(--bg); }
+  .btn-danger {
+    border: none; background: var(--red); color: #fff; font-family: 'Inter', sans-serif;
+    font-size: 13px; font-weight: 600; padding: 10px 16px; border-radius: 10px; cursor: pointer;
+  }
+  .btn-danger:hover { background: #9C3609; }
+
+  /* Login tab */
+  .login-wrap { display: flex; justify-content: center; padding: 48px 12px; }
+  .login-card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 32px; width: 100%; max-width: 360px; }
+  .login-mark { width: 44px; height: 44px; border-radius: 11px; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; margin: 0 auto 18px; }
+  .login-heading { font-size: 18px; font-weight: 700; text-align: center; margin-bottom: 4px; }
+  .login-sub { font-size: 12.5px; color: var(--muted); text-align: center; margin-bottom: 24px; }
+  .login-note { font-size: 11.5px; color: var(--amber); background: var(--amber-soft); border-radius: 9px; padding: 9px 12px; margin-top: 16px; text-align: center; }
+
+  /* Cadastro tab */
+  .cadastro-layout { display: grid; grid-template-columns: 380px 1fr; gap: 20px; align-items: start; }
+  @media (max-width: 900px) { .cadastro-layout { grid-template-columns: 1fr; } }
+  .form-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 20px; }
+  .form-card h3 { font-size: 14px; margin: 0 0 16px; font-weight: 700; }
+
+  .upload-field label { display: block; font-size: 11.5px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 6px; }
+  .upload-box {
+    border: 1.5px dashed var(--line); border-radius: 10px; padding: 14px; display: flex; align-items: center; gap: 12px;
+    cursor: pointer; transition: border-color 0.12s ease, background 0.12s ease; background: var(--bg);
+  }
+  .upload-box:hover { border-color: var(--primary); background: var(--primary-soft); }
+  .upload-box input[type="file"] { display: none; }
+  .upload-thumb {
+    width: 48px; height: 48px; border-radius: 8px; background: var(--surface); border: 1px solid var(--line);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; color: var(--muted);
+  }
+  .upload-thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .upload-text { font-size: 12.5px; }
+  .upload-text .filename { color: var(--primary); font-weight: 600; font-size: 12px; word-break: break-all; }
+  .upload-text .hint { color: var(--muted); font-size: 11.5px; }
+
+  .seg-control { display: flex; gap: 4px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 4px; }
+  .seg-control input[type="radio"] { position: absolute; opacity: 0; pointer-events: none; }
+  .seg-control label {
+    flex: 1; text-align: center; font-size: 12.5px; font-weight: 600; color: var(--muted);
+    padding: 8px 10px; border-radius: 7px; cursor: pointer; transition: background 0.12s ease, color 0.12s ease;
+    text-transform: none; letter-spacing: normal; margin: 0;
+  }
+  .seg-control input[type="radio"]:checked + label { background: var(--primary); color: #fff; }
+
+  .tipo-badge { font-size: 10.5px; font-weight: 600; padding: 3px 9px; border-radius: 20px; white-space: nowrap; }
+  .tipo-badge.operador { background: var(--primary-soft); color: var(--primary); }
+  .tipo-badge.fornecedor { background: var(--amber-soft); color: var(--amber); }
+
+  .cadastros-list { display: flex; flex-direction: column; gap: 10px; }
+  .cadastro-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 16px 18px; display: flex; align-items: center; gap: 14px; }
+  .cadastro-card .info { flex: 1; min-width: 0; }
+  .cadastro-card .nome { font-size: 13.5px; font-weight: 700; }
+  .cadastro-card .cpf { font-size: 12px; color: var(--muted); }
+  .cadastro-thumbs { display: flex; gap: 6px; }
+  .cadastro-thumbs .upload-thumb { width: 38px; height: 38px; }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="22" x2="21" y2="22"></line>
+          <line x1="6" y1="18" x2="6" y2="11"></line>
+          <line x1="10" y1="18" x2="10" y2="11"></line>
+          <line x1="14" y1="18" x2="14" y2="11"></line>
+          <line x1="18" y1="18" x2="18" y2="11"></line>
+          <polygon points="12 2 21 8 3 8"></polygon>
+        </svg>
+      </div>
+      <div>
+        <div class="brand-title display">P.S &amp; Guty Finantech Corporoation</div>
+        <div class="brand-sub">Controle de contas cadastradas · dados salvos neste navegador (localStorage)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tabs-nav" role="tablist">
+    <button class="tab-btn active" data-tab="login" type="button" role="tab">Login</button>
+    <button class="tab-btn" data-tab="cadastro" type="button" role="tab">Cadastro</button>
+    <button class="tab-btn" data-tab="dashboard" type="button" role="tab">Dashboard</button>
+  </div>
+
+  <!-- ==================== LOGIN (demonstrativo) ==================== -->
+  <section class="tab-panel active" id="tab-login">
+    <div class="login-wrap">
+      <div class="login-card">
+        <div class="login-mark">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="10" rx="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <div class="login-heading display">Acessar plataforma</div>
+        <div class="login-sub">Entre com suas credenciais para continuar</div>
+
+        <form id="formLogin">
+          <div class="field">
+            <label for="fLoginUsuario">Usuário ou e-mail</label>
+            <input id="fLoginUsuario" type="text" placeholder="seu.usuario@empresa.com" autocomplete="off" />
+          </div>
+          <div class="field">
+            <label for="fLoginSenha">Senha</label>
+            <input id="fLoginSenha" type="password" placeholder="••••••••" autocomplete="off" />
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Entrar</button>
+        </form>
+
+        <div class="login-note">Tela apenas demonstrativa — autenticação ainda não implementada.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CADASTRO (clientes) ==================== -->
+  <section class="tab-panel" id="tab-cadastro">
+    <div class="panel-head-row">
+      <div>
+        <div class="panel-title display">Cadastro de clientes</div>
+        <div class="panel-desc">Registre os dados pessoais e os documentos de identificação.</div>
+      </div>
+    </div>
+
+    <div class="cadastro-layout">
+      <div class="form-card">
+        <h3>Novo cadastro</h3>
+        <form id="formCadastro">
+          <div class="field">
+            <label>Tipo de cadastro</label>
+            <div class="seg-control" id="segTipoCadastro">
+              <input type="radio" name="tipoCadastro" id="tipoOperador" value="Operador" required />
+              <label for="tipoOperador">Operador</label>
+              <input type="radio" name="tipoCadastro" id="tipoFornecedor" value="Fornecedor" required />
+              <label for="tipoFornecedor">Fornecedor</label>
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="fNome">Nome</label>
+              <input id="fNome" type="text" placeholder="Ex.: Maria" required />
+            </div>
+            <div class="field">
+              <label for="fSobrenome">Sobrenome</label>
+              <input id="fSobrenome" type="text" placeholder="Ex.: Oliveira" required />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="fCpfCadastro">CPF</label>
+            <input id="fCpfCadastro" type="text" placeholder="000.000.000-00" required />
+          </div>
+
+          <div class="field upload-field">
+            <label>Documento — imagem frontal</label>
+            <label class="upload-box" id="uploadFrenteBox">
+              <div class="upload-thumb" id="thumbFrente">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+              </div>
+              <div class="upload-text">
+                <div class="filename" id="filenameFrente">Adicionar documento (frente)</div>
+                <div class="hint">JPG, PNG — clique para selecionar</div>
+              </div>
+              <input type="file" accept="image/*" id="fDocFrente" />
+            </label>
+          </div>
+
+          <div class="field upload-field">
+            <label>Documento — imagem de trás</label>
+            <label class="upload-box" id="uploadVersoBox">
+              <div class="upload-thumb" id="thumbVerso">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>
+              </div>
+              <div class="upload-text">
+                <div class="filename" id="filenameVerso">Adicionar documento (verso)</div>
+                <div class="hint">JPG, PNG — clique para selecionar</div>
+              </div>
+              <input type="file" accept="image/*" id="fDocVerso" />
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; margin-top: 6px;">Salvar cadastro</button>
+        </form>
+      </div>
+
+      <div>
+        <div class="table-head-row" style="border: 1px solid var(--line); border-radius: 14px 14px 0 0; background: var(--surface);">
+          <h2>Clientes cadastrados</h2>
+          <span class="count"><span id="contagemCadastros">0</span> cadastrados</span>
+        </div>
+        <div class="cadastros-list" id="listaCadastros" style="margin-top: 10px;"></div>
+        <div class="empty-state" id="estadoVazioCadastro" style="border: 1px solid var(--line); border-radius: 14px; background: var(--surface);">
+          <div class="empty-title">Nenhum cliente cadastrado</div>
+          Preencha o formulário ao lado para adicionar o primeiro.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DASHBOARD ==================== -->
+  <section class="tab-panel" id="tab-dashboard">
+    <div class="subtabs-nav" id="dashboardSubtabs">
+      <button class="subtab-btn active" data-tipo="Fornecedor" type="button">Fornecedor</button>
+      <button class="subtab-btn" data-tipo="Operador" type="button">Operador</button>
+    </div>
+
+    <div class="panel-head-row">
+      <div>
+        <div class="panel-title display" id="tituloDashboard">Dashboard de contas — Fornecedor</div>
+        <div class="panel-desc">Visão geral das contas cadastradas na plataforma.</div>
+      </div>
+      <div class="topbar-actions">
+        <div class="search-box">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input id="busca" placeholder="Buscar por conta, CPF ou status..." />
+        </div>
+        <button class="btn-primary" id="btnCadastrar" type="button">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Cadastrar conta
+        </button>
+      </div>
+    </div>
+
+    <div class="summary" id="summaryDashboard">
+      <div class="summary-cell">
+        <div class="summary-label" id="summaryLabelTotal">Total de contas cadastradas</div>
+        <div class="summary-value display" id="totalContas">0</div>
+      </div>
+      <div class="summary-cell col-operador">
+        <div class="summary-label">Saldo total consolidado</div>
+        <div class="summary-value mono" id="saldoTotal" style="color: var(--positive);">R$ 0,00</div>
+      </div>
+      <div class="summary-cell col-operador">
+        <div class="summary-label">Saldo total bloqueado</div>
+        <div class="summary-value mono" id="saldoBloqueadoTotal">R$ 0,00</div>
+      </div>
+    </div>
+
+    <div class="table-card">
+      <div class="table-head-row">
+        <h2 id="tituloTabela">Contas cadastradas</h2>
+        <span class="count"><span id="contagemVisivel">0</span> de <span id="contagemTotal">0</span></span>
+      </div>
+
+      <table id="tabela">
+        <thead>
+          <tr>
+            <th>Conta</th>
+            <th class="col-fornecedor">Nome</th>
+            <th>CPF</th>
+            <th class="num col-operador">Saldo</th>
+            <th class="num col-operador">Saldo bloqueado</th>
+            <th class="col-operador">Status</th>
+            <th class="center">Ação</th>
+          </tr>
+        </thead>
+        <tbody id="tabelaCorpo"></tbody>
+      </table>
+
+      <div class="empty-state" id="estadoVazio">
+        <div class="empty-title" id="estadoVazioTitulo">Nenhuma conta cadastrada</div>
+        Clique em "Cadastrar conta" para adicionar a primeira.
+      </div>
+    </div>
+  </section>
+
+  <!-- Modal: cadastrar/editar conta -->
+  <div class="overlay" id="overlay">
+    <div class="modal">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="modalTitulo">Cadastrar conta</div>
+          <div class="modal-sub" id="modalSub">Preencha os dados da conta abaixo.</div>
+        </div>
+        <button class="modal-close" id="btnFecharModal" type="button" aria-label="Fechar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <form id="formConta">
+        <div class="field">
+          <label>Tipo de conta</label>
+          <div class="seg-control">
+            <input type="radio" name="tipoConta" id="tipoContaFornecedor" value="Fornecedor" required />
+            <label for="tipoContaFornecedor">Fornecedor</label>
+            <input type="radio" name="tipoConta" id="tipoContaOperador" value="Operador" required />
+            <label for="tipoContaOperador">Operador</label>
+          </div>
+        </div>
+
+        <div class="field" id="grupoNomeConta">
+          <label for="fNomeConta">Nome</label>
+          <input id="fNomeConta" type="text" placeholder="Ex.: Distribuidora Alfa Ltda." />
+        </div>
+
+        <div class="field">
+          <label for="fConta">Conta</label>
+          <input id="fConta" type="text" placeholder="Ex.: 0231-9" required />
+        </div>
+
+        <div class="field">
+          <label for="fCpf">CPF</label>
+          <input id="fCpf" type="text" placeholder="000.000.000-00" required />
+        </div>
+
+        <div class="field-row" id="grupoPixConta">
+          <div class="field">
+            <label for="fPixTipo">Tipo de chave Pix</label>
+            <select id="fPixTipo">
+              <option value="">Selecione</option>
+              <option value="CPF">CPF</option>
+              <option value="E-mail">E-mail</option>
+              <option value="Telefone">Telefone</option>
+              <option value="Aleatória">Aleatória</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="fPixValor">Chave Pix</label>
+            <input id="fPixValor" type="text" placeholder="Valor da chave" />
+          </div>
+        </div>
+
+        <div class="field-row" id="grupoSaldoConta">
+          <div class="field">
+            <label for="fSaldo">Saldo (R$)</label>
+            <input id="fSaldo" type="number" step="0.01" placeholder="0,00" />
+          </div>
+          <div class="field">
+            <label for="fBloqueado">Saldo bloqueado (R$)</label>
+            <input id="fBloqueado" type="number" step="0.01" placeholder="0,00" />
+          </div>
+        </div>
+
+        <div class="field" id="grupoStatusConta">
+          <label for="fStatus">Status</label>
+          <select id="fStatus">
+            <option value="">Selecione</option>
+            <option value="ativa">Ativa</option>
+            <option value="atenção">Atenção</option>
+            <option value="bloqueada">Bloqueada</option>
+          </select>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="btn-ghost" id="btnCancelar">Cancelar</button>
+          <button type="submit" class="btn-primary" id="btnSalvar">Salvar conta</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: confirmação de exclusão (reutilizado por contas e cadastros) -->
+  <div class="overlay" id="overlayConfirm">
+    <div class="modal modal-sm">
+      <div class="modal-head">
+        <div>
+          <div class="modal-title" id="confirmTitulo">Excluir registro</div>
+          <div class="modal-sub" id="confirmSub">Essa ação não pode ser desfeita.</div>
+        </div>
+        <button class="modal-close" id="btnFecharConfirm" type="button" aria-label="Fechar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-ghost" id="btnCancelarConfirm">Cancelar</button>
+        <button type="button" class="btn-danger" id="btnConfirmarExclusao">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  /* ======================= TABS ======================= */
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  const tabPanels = document.querySelectorAll(".tab-panel");
+  tabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      tabButtons.forEach((b) => b.classList.remove("active"));
+      tabPanels.forEach((p) => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("tab-" + btn.dataset.tab).classList.add("active");
+    });
+  });
+
+  /* ======================= LOGIN (demonstrativo) ======================= */
+  document.getElementById("formLogin").addEventListener("submit", (e) => {
+    e.preventDefault();
+    alert("Tela apenas demonstrativa — autenticação ainda não implementada.");
+  });
+
+  /* ======================= CONFIRMAÇÃO GENÉRICA ======================= */
+  const overlayConfirm = document.getElementById("overlayConfirm");
+  const confirmTitulo = document.getElementById("confirmTitulo");
+  const confirmSub = document.getElementById("confirmSub");
+  let acaoConfirmada = null;
+
+  function pedirConfirmacao(titulo, subtitulo, callback) {
+    confirmTitulo.textContent = titulo;
+    confirmSub.textContent = subtitulo;
+    acaoConfirmada = callback;
+    overlayConfirm.classList.add("open");
+  }
+  function fecharConfirm() {
+    overlayConfirm.classList.remove("open");
+    acaoConfirmada = null;
+  }
+  document.getElementById("btnFecharConfirm").addEventListener("click", fecharConfirm);
+  document.getElementById("btnCancelarConfirm").addEventListener("click", fecharConfirm);
+  document.getElementById("btnConfirmarExclusao").addEventListener("click", () => {
+    if (typeof acaoConfirmada === "function") acaoConfirmada();
+    fecharConfirm();
+  });
+  overlayConfirm.addEventListener("click", (e) => { if (e.target === overlayConfirm) fecharConfirm(); });
+
+  /* ======================= CADASTRO DE CLIENTES ======================= */
+  const CADASTRO_KEY = "psGutyCadastros";
+
+  function carregarCadastros() {
+    try {
+      const salvo = localStorage.getItem(CADASTRO_KEY);
+      return salvo ? JSON.parse(salvo) : [];
+    } catch (e) {
+      console.warn("Não foi possível ler o localStorage:", e);
+      return [];
+    }
+  }
+  function salvarCadastrosNoStorage() {
+    try {
+      localStorage.setItem(CADASTRO_KEY, JSON.stringify(CADASTROS));
+    } catch (e) {
+      console.warn("Não foi possível salvar no localStorage:", e);
+    }
+  }
+
+  let CADASTROS = carregarCadastros();
+  let proximoIdCadastro = CADASTROS.reduce((max, c) => Math.max(max, c.id), 0) + 1;
+
+  let docFrenteDataUrl = null;
+  let docVersoDataUrl = null;
+
+  function lerImagem(input, thumbEl, filenameEl, onLoaded) {
+    const arquivo = input.files && input.files[0];
+    if (!arquivo) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      thumbEl.innerHTML = `<img src="${reader.result}" alt="Pré-visualização do documento" />`;
+      filenameEl.textContent = arquivo.name;
+      onLoaded(reader.result);
+    };
+    reader.readAsDataURL(arquivo);
+  }
+
+  document.getElementById("fDocFrente").addEventListener("change", (e) => {
+    lerImagem(e.target, document.getElementById("thumbFrente"), document.getElementById("filenameFrente"), (url) => docFrenteDataUrl = url);
+  });
+  document.getElementById("fDocVerso").addEventListener("change", (e) => {
+    lerImagem(e.target, document.getElementById("thumbVerso"), document.getElementById("filenameVerso"), (url) => docVersoDataUrl = url);
+  });
+
+  function iniciaisNome(nome, sobrenome) {
+    return ((nome || "")[0] || "").toUpperCase() + ((sobrenome || "")[0] || "").toUpperCase();
+  }
+
+  function thumbHtml(dataUrl, label) {
+    if (dataUrl) return `<div class="upload-thumb" title="${label}"><img src="${dataUrl}" alt="${label}" /></div>`;
+    return `<div class="upload-thumb" title="${label}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect></svg></div>`;
+  }
+
+  function excluirCadastro(id) {
+    CADASTROS = CADASTROS.filter((c) => c.id !== id);
+    salvarCadastrosNoStorage();
+    renderCadastros();
+  }
+
+  function renderCadastros() {
+    const lista = document.getElementById("listaCadastros");
+    const vazio = document.getElementById("estadoVazioCadastro");
+    lista.innerHTML = "";
+
+    document.getElementById("contagemCadastros").textContent = CADASTROS.length;
+    vazio.style.display = CADASTROS.length === 0 ? "block" : "none";
+    lista.style.display = CADASTROS.length === 0 ? "none" : "flex";
+
+    CADASTROS.forEach((c) => {
+      const card = document.createElement("div");
+      card.className = "cadastro-card";
+      card.innerHTML = `
+        <div class="avatar">${iniciaisNome(c.nome, c.sobrenome) || "•"}</div>
+        <div class="info">
+          <div class="nome">${c.nome} ${c.sobrenome} ${c.tipo ? `<span class="tipo-badge ${c.tipo.toLowerCase()}">${c.tipo}</span>` : ""}</div>
+          <div class="cpf mono">${c.cpf}</div>
+        </div>
+        <div class="cadastro-thumbs">
+          ${thumbHtml(c.docFrente, "Documento frente")}
+          ${thumbHtml(c.docVerso, "Documento verso")}
+        </div>
+        <button class="acao-btn" data-id="${c.id}" type="button" style="background: var(--red);">Excluir</button>
+      `;
+      card.querySelector(".acao-btn").addEventListener("click", () => {
+        pedirConfirmacao(
+          "Excluir cliente cadastrado",
+          `Tem certeza que deseja excluir o cadastro de ${c.nome} ${c.sobrenome}? Essa ação não pode ser desfeita.`,
+          () => excluirCadastro(c.id)
+        );
+      });
+      lista.appendChild(card);
+    });
+  }
+
+  document.getElementById("formCadastro").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const tipoSelecionado = document.querySelector('input[name="tipoCadastro"]:checked');
+    const dados = {
+      id: proximoIdCadastro++,
+      nome: document.getElementById("fNome").value.trim(),
+      sobrenome: document.getElementById("fSobrenome").value.trim(),
+      cpf: document.getElementById("fCpfCadastro").value.trim(),
+      tipo: tipoSelecionado ? tipoSelecionado.value : "",
+      docFrente: docFrenteDataUrl,
+      docVerso: docVersoDataUrl,
+    };
+    CADASTROS.push(dados);
+    salvarCadastrosNoStorage();
+
+    e.target.reset();
+    docFrenteDataUrl = null;
+    docVersoDataUrl = null;
+    document.getElementById("thumbFrente").innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>`;
+    document.getElementById("thumbVerso").innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><path d="M21 15l-5-5L5 21"></path></svg>`;
+    document.getElementById("filenameFrente").textContent = "Adicionar documento (frente)";
+    document.getElementById("filenameVerso").textContent = "Adicionar documento (verso)";
+
+    renderCadastros();
+  });
+
+  renderCadastros();
+
+  /* ======================= DASHBOARD DE CONTAS ======================= */
+  const STORAGE_KEY = "psGutyContas";
+
+  function carregarContas() {
+    try {
+      const salvo = localStorage.getItem(STORAGE_KEY);
+      return salvo ? JSON.parse(salvo) : [];
+    } catch (e) {
+      console.warn("Não foi possível ler o localStorage:", e);
+      return [];
+    }
+  }
+
+  function salvarContasNoStorage() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(CONTAS));
+    } catch (e) {
+      console.warn("Não foi possível salvar no localStorage:", e);
+    }
+  }
+
+  let CONTAS = carregarContas();
+  let proximoId = CONTAS.reduce((max, c) => Math.max(max, c.id), 0) + 1;
+  let editandoId = null;
+  let dashboardTipoAtivo = "Fornecedor";
+
+  const STATUS_LABEL = { "ativa": "Ativa", "atenção": "Atenção", "bloqueada": "Bloqueada" };
+  const STATUS_CLASS = { "ativa": "status-ativa", "atenção": "status-atencao", "bloqueada": "status-bloqueada" };
+
+  const corpo = document.getElementById("tabelaCorpo");
+  const busca = document.getElementById("busca");
+  const estadoVazio = document.getElementById("estadoVazio");
+  const contagemVisivel = document.getElementById("contagemVisivel");
+  const contagemTotal = document.getElementById("contagemTotal");
+  const totalContasEl = document.getElementById("totalContas");
+  const saldoTotalEl = document.getElementById("saldoTotal");
+  const saldoBloqueadoTotalEl = document.getElementById("saldoBloqueadoTotal");
+
+  const overlay = document.getElementById("overlay");
+  const form = document.getElementById("formConta");
+  const modalTitulo = document.getElementById("modalTitulo");
+  const modalSub = document.getElementById("modalSub");
+  const btnSalvar = document.getElementById("btnSalvar");
+
+  const campos = {
+    nome: document.getElementById("fNomeConta"),
+    conta: document.getElementById("fConta"),
+    cpf: document.getElementById("fCpf"),
+    pixTipo: document.getElementById("fPixTipo"),
+    pixValor: document.getElementById("fPixValor"),
+    saldo: document.getElementById("fSaldo"),
+    bloqueado: document.getElementById("fBloqueado"),
+    status: document.getElementById("fStatus"),
+  };
+
+  const brl = (v) => new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(v || 0);
+
+  function iniciaisConta(numero) {
+    const limpo = (numero || "").replace(/\D/g, "");
+    return limpo ? limpo.slice(0, 2) : "•";
+  }
+
+  function fecharMenusAbertos(exceto) {
+    document.querySelectorAll(".acao-menu.open").forEach((menu) => {
+      if (menu !== exceto) menu.classList.remove("open");
+    });
+  }
+
+  function contasDoTipoAtivo() {
+    return CONTAS.filter((c) => c.tipo === dashboardTipoAtivo);
+  }
+
+  function setTipoContaSelecionado(tipo) {
+    document.querySelectorAll('input[name="tipoConta"]').forEach((r) => {
+      r.checked = r.value === tipo;
+    });
+    atualizarCamposContaPorTipo(tipo);
+  }
+
+  function atualizarCamposContaPorTipo(tipo) {
+    const ehFornecedor = tipo === "Fornecedor";
+    document.getElementById("grupoNomeConta").style.display = ehFornecedor ? "block" : "none";
+    document.getElementById("grupoPixConta").style.display = ehFornecedor ? "none" : "grid";
+    document.getElementById("grupoSaldoConta").style.display = ehFornecedor ? "none" : "grid";
+    document.getElementById("grupoStatusConta").style.display = ehFornecedor ? "none" : "block";
+
+    campos.nome.required = ehFornecedor;
+    campos.pixTipo.required = !ehFornecedor;
+    campos.pixValor.required = !ehFornecedor;
+    campos.saldo.required = !ehFornecedor;
+    campos.bloqueado.required = !ehFornecedor;
+    campos.status.required = !ehFornecedor;
+  }
+
+  document.querySelectorAll('input[name="tipoConta"]').forEach((radio) => {
+    radio.addEventListener("change", (e) => atualizarCamposContaPorTipo(e.target.value));
+  });
+
+  function abrirModal(id) {
+    fecharMenusAbertos();
+    editandoId = id || null;
+    form.reset();
+
+    if (editandoId) {
+      const conta = CONTAS.find((c) => c.id === editandoId);
+      modalTitulo.textContent = "Editar conta";
+      modalSub.textContent = "Atualize os dados da conta " + conta.conta + ".";
+      btnSalvar.textContent = "Salvar alterações";
+      campos.conta.value = conta.conta;
+      campos.cpf.value = conta.cpf;
+      campos.nome.value = conta.nome || "";
+      campos.pixTipo.value = conta.pixTipo || "";
+      campos.pixValor.value = conta.pixValor || "";
+      campos.saldo.value = conta.saldo || 0;
+      campos.bloqueado.value = conta.bloqueado || 0;
+      campos.status.value = conta.status || "";
+      setTipoContaSelecionado(conta.tipo);
+    } else {
+      modalTitulo.textContent = "Cadastrar conta";
+      modalSub.textContent = "Preencha os dados da conta abaixo.";
+      btnSalvar.textContent = "Salvar conta";
+      setTipoContaSelecionado(dashboardTipoAtivo);
+    }
+
+    overlay.classList.add("open");
+    campos.conta.focus();
+  }
+
+  function fecharModal() {
+    overlay.classList.remove("open");
+    editandoId = null;
+    form.reset();
+  }
+
+  function excluirConta(id) {
+    fecharMenusAbertos();
+    CONTAS = CONTAS.filter((c) => c.id !== id);
+    salvarContasNoStorage();
+    aplicarFiltro();
+  }
+
+  function renderLinha(conta) {
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+      <td>
+        <div class="conta-cell">
+          <div class="avatar">${iniciaisConta(conta.conta)}</div>
+          <span class="mono">${conta.conta}</span>
+        </div>
+      </td>
+      <td class="col-fornecedor">${conta.nome ? conta.nome : "—"}</td>
+      <td class="mono">${conta.cpf}</td>
+      <td class="num mono col-operador">${brl(conta.saldo)}</td>
+      <td class="num mono col-operador" style="${conta.bloqueado > 0 ? 'color: var(--amber); font-weight:600;' : ''}">${brl(conta.bloqueado)}</td>
+      <td class="col-operador">
+        <span class="status-pill ${STATUS_CLASS[conta.status] || ''}">
+          <span class="status-dot"></span>${STATUS_LABEL[conta.status] || '—'}
+        </span>
+      </td>
+      <td>
+        <div class="acao-wrap">
+          <button class="acao-btn" type="button">Ação</button>
+          <div class="acao-menu">
+            <div class="acao-menu-title">Conta ${conta.conta}</div>
+            <button class="acao-item" data-acao="editar">Editar conta</button>
+            <button class="acao-item disabled" disabled>Histórico <span class="soon">em breve</span></button>
+            <button class="acao-item danger" data-acao="excluir">Excluir conta</button>
+          </div>
+        </div>
+      </td>
+    `;
+
+    const btn = tr.querySelector(".acao-btn");
+    const menu = tr.querySelector(".acao-menu");
+    btn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const estavaAberto = menu.classList.contains("open");
+      fecharMenusAbertos();
+      menu.classList.toggle("open", !estavaAberto);
+    });
+    tr.querySelector('[data-acao="editar"]').addEventListener("click", (e) => {
+      e.stopPropagation();
+      abrirModal(conta.id);
+    });
+    tr.querySelector('[data-acao="excluir"]').addEventListener("click", (e) => {
+      e.stopPropagation();
+      fecharMenusAbertos();
+      pedirConfirmacao(
+        "Excluir conta cadastrada",
+        `Tem certeza que deseja excluir a conta ${conta.conta}? Essa ação não pode ser desfeita.`,
+        () => excluirConta(conta.id)
+      );
+    });
+
+    return tr;
+  }
+
+  function render(lista) {
+    const baseTipo = contasDoTipoAtivo();
+    const ehFornecedor = dashboardTipoAtivo === "Fornecedor";
+
+    const tabelaEl = document.getElementById("tabela");
+    tabelaEl.classList.toggle("modo-fornecedor", ehFornecedor);
+    tabelaEl.classList.toggle("modo-operador", !ehFornecedor);
+    document.getElementById("summaryDashboard").classList.toggle("modo-fornecedor", ehFornecedor);
+    document.getElementById("summaryLabelTotal").textContent = ehFornecedor ? "Total de fornecedores cadastrados" : "Total de contas cadastradas";
+
+    corpo.innerHTML = "";
+    lista.forEach((conta) => corpo.appendChild(renderLinha(conta)));
+
+    contagemVisivel.textContent = lista.length;
+    contagemTotal.textContent = baseTipo.length;
+    totalContasEl.textContent = baseTipo.length;
+
+    const saldoTotal = baseTipo.reduce((s, c) => s + Number(c.saldo || 0), 0);
+    const bloqueadoTotal = baseTipo.reduce((s, c) => s + Number(c.bloqueado || 0), 0);
+    saldoTotalEl.textContent = brl(saldoTotal);
+    saldoBloqueadoTotalEl.textContent = brl(bloqueadoTotal);
+    saldoBloqueadoTotalEl.style.color = bloqueadoTotal > 0 ? "var(--amber)" : "var(--ink)";
+
+    document.getElementById("tituloDashboard").textContent = "Dashboard de contas — " + dashboardTipoAtivo;
+    document.getElementById("tituloTabela").textContent = "Contas cadastradas — " + dashboardTipoAtivo;
+    document.getElementById("estadoVazioTitulo").textContent = "Nenhuma conta cadastrada em " + dashboardTipoAtivo;
+
+    estadoVazio.style.display = baseTipo.length === 0 ? "block" : "none";
+    tabelaEl.style.display = baseTipo.length === 0 ? "none" : "table";
+  }
+
+  function aplicarFiltro() {
+    const base = contasDoTipoAtivo();
+    const q = busca.value.trim().toLowerCase();
+    if (!q) return render(base);
+    const filtradas = base.filter((c) =>
+      c.conta.toLowerCase().includes(q) ||
+      c.cpf.toLowerCase().includes(q) ||
+      (c.nome || "").toLowerCase().includes(q) ||
+      (STATUS_LABEL[c.status] || "").toLowerCase().includes(q)
+    );
+    render(filtradas);
+  }
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const tipoContaSelecionado = document.querySelector('input[name="tipoConta"]:checked');
+    const tipo = tipoContaSelecionado ? tipoContaSelecionado.value : dashboardTipoAtivo;
+    const ehFornecedor = tipo === "Fornecedor";
+
+    const dados = {
+      conta: campos.conta.value.trim(),
+      cpf: campos.cpf.value.trim(),
+      tipo: tipo,
+      nome: ehFornecedor ? campos.nome.value.trim() : "",
+      pixTipo: ehFornecedor ? "" : campos.pixTipo.value,
+      pixValor: ehFornecedor ? "" : campos.pixValor.value.trim(),
+      saldo: ehFornecedor ? 0 : (parseFloat(campos.saldo.value) || 0),
+      bloqueado: ehFornecedor ? 0 : (parseFloat(campos.bloqueado.value) || 0),
+      status: ehFornecedor ? "" : campos.status.value,
+    };
+
+    if (editandoId) {
+      const idx = CONTAS.findIndex((c) => c.id === editandoId);
+      CONTAS[idx] = { ...CONTAS[idx], ...dados };
+    } else {
+      CONTAS.push({ id: proximoId++, ...dados });
+    }
+
+    salvarContasNoStorage();
+    fecharModal();
+    aplicarFiltro();
+  });
+
+  document.getElementById("btnCadastrar").addEventListener("click", () => abrirModal(null));
+  document.getElementById("btnFecharModal").addEventListener("click", fecharModal);
+  document.getElementById("btnCancelar").addEventListener("click", fecharModal);
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) fecharModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") { fecharModal(); fecharConfirm(); } });
+
+  busca.addEventListener("input", aplicarFiltro);
+  document.addEventListener("click", () => fecharMenusAbertos());
+
+  const subtabButtons = document.querySelectorAll(".subtab-btn");
+  subtabButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      subtabButtons.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+      dashboardTipoAtivo = btn.dataset.tipo;
+      busca.value = "";
+      aplicarFiltro();
+    });
+  });
+
+  aplicarFiltro();
+</script>
+
+</body>
+</html><!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>P.S & Guty Finantech Corporoation</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+  :root {
+    --bg: #F3F5F8;
+    --surface: #FFFFFF;
+    --ink: #10182C;
+    --muted: #64748B;
+    --line: #E3E7EE;
+    --primary: #1D3557;
+    --primary-soft: #EAF0F7;
+    --positive: #0E8F6F;
+    --positive-soft: #E5F5EF;
+    --amber: #B4791C;
+    --amber-soft: #FBF1E1;
+    --red: #C1440E;
+    --red-soft: #FBEAE3;
+    --green: #16A34A;
+    --green-dark: #0F7C38;
+    --ghost: #C4CAD4;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 28px;
+  }
+  .mono { font-family: 'IBM Plex Mono', monospace; font-variant-numeric: tabular-nums; }
+  .display { font-family: 'Space Grotesk', sans-serif; }
+
   .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; flex-wrap: wrap; gap: 12px; }
   .brand { display: flex; align-items: center; gap: 10px; }
   .brand-mark { width: 36px; height: 36px; border-radius: 9px; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; flex-shrink: 0; }
